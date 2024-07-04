@@ -6,6 +6,12 @@
 
 int main()
 {
+    brain mainbrain(5,6,7,8);
+    mainbrain.initLayers();
+    mainbrain.setInputNeurons({ 1,0,-1,0,1,0 });
+    mainbrain.passLayers();
+    mainbrain.setInputNeurons({ 0,1,1,0,-1,0 });
+    mainbrain.passLayers();
     std::cout << "Hello World!\n";
 }
 
