@@ -11,18 +11,29 @@ struct connection {
 class neuron {
 public:
 	std::vector<connection> connections;
+	std::vector<double> activationContribution;
+	std::vector<neuron>* layerBehind;
 	int layer;
 	int id;
 	double bias = 0;
 	double activation = 0;
 
 	void getActivation(std::vector<neuron>& lastLayer) {
-		activation = bias;
+		layerBehind = &lastLayer;
+		activationContribution.clear();
+		activation += bias;
 		for (const neuron& currentNeuron : lastLayer) {
-			activation += currentNeuron.activation * connections[currentNeuron.id - 1].weight;
+			const double result = currentNeuron.activation * connections[currentNeuron.id - 1].weight;
+			activationContribution.push_back(result);
+			activation += result;
 			
 		}
 		activation = relu(activation);
+	}
+
+	void analyseContributions() {
+		std::vector<double> activationPower;
+
 	}
 };
 
