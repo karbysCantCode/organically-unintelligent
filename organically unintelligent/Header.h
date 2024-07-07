@@ -32,7 +32,14 @@ public:
 	}
 
 	void analyseContributions() {
-		std::vector<double> activationPower;
+		std::cout << '\n';
+		std::vector<double> partPower;
+		for (const auto& currentNeuron : *layerBehind) {
+			const double thisNeuronContribute = activationContribution[currentNeuron.id - 1];
+			double power[3];
+			double weightPower = 
+			std::cout << "weightPower: " << weightPower << " biasPower: " << biasPower << " activationPower: " << activationPower << '\n';
+		}
 
 	}
 };
@@ -61,7 +68,7 @@ public:
 
 	}
 
-	void setInputNeurons(std::vector<double> &inputArray) {
+	void setInputNeurons(std::vector<double> inputArray) {
 		for (neuron& currentNeuron : layers[0]) {
 			currentNeuron.activation = inputArray[currentNeuron.id - 1];
 		}
@@ -135,6 +142,12 @@ public:
 			std::cout << "	Neuron: " << currentNeuron.id << '\n';
 			std::cout << "		Activation: " << currentNeuron.activation << '\n';
 			std::cout << "		Bias: " << currentNeuron.bias << '\n';
+		}
+	}
+
+	void analyseOut() {
+		for (neuron& currentNeuron : layers[layerCount + 1]) {
+			currentNeuron.analyseContributions();
 		}
 	}
 private:

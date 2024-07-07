@@ -12,6 +12,7 @@ int main()
     mainbrain.passLayers();
     mainbrain.setInputNeurons({ 0,1,1,0,-1,0 });
     mainbrain.passLayers();
+    mainbrain.analyseOut();
     std::cout << "Hello World!\n";
 }
 
